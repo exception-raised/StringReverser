@@ -1,8 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void reverse(const char* arg);
-
+extern void reverse(const char* arg);
 
 int main(int argc, char *argv[]) {
     if (argc < 2) {
@@ -10,6 +9,13 @@ int main(int argc, char *argv[]) {
         return EXIT_FAILURE;
     }
 
+    const char* test = "test";
+
+    reverse(test);
+    printf(test);
+
     return EXIT_SUCCESS;
 }
+
+
 

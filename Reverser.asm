@@ -1,17 +1,19 @@
 section .data
-    hello db 'Hello, World!',0
+testString db "test", 0 
+format db "Length: %d", 10, 0  
 
 section .text
-    global _start
 
-_start:
-    ; Write 'Hello, World!' to stdout (file descriptor 1)
-    mov eax, 4
-    mov ebx, 1
-    mov ecx, hello
-    mov edx, 13
-    int 0x80  ; Invoke syscall
+global reverse
+extern strlen, printf
 
-    ; Exit the program
-    mov eax, 1
-    int 0x80
+reverse:
+    push rbp
+    mov rbp, rsp
+    mov rdi, testString
+    call strlen
+    mov rdi, format
+    mov rsi, rax  ; rax contains the length
+    call printf
+    leave
+    ret
