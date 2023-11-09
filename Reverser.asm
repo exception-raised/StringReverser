@@ -2,7 +2,6 @@ section .data
 testString db "thisisnowreversed", 0 
 format db "Char: %s", 10, 0  
 
-; tset
 ; Maybe push string length onto the stack to perserve its value.
 section .text
 
@@ -39,8 +38,6 @@ reverse:
         dec r11
         jmp __loop
 
-
-        ;jmp __loop
     __print:
         ;mov rsi, r10
         ;mov r10, testString
