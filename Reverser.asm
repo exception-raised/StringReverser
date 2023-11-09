@@ -14,7 +14,7 @@ reverse:
     xor r10, r10
     xor r9, r9
     ;mov r8, rdi
-    mov rdi, testString
+    ;mov rdi, testString
     call strlen
     mov r11, rax
 
@@ -27,12 +27,12 @@ reverse:
     __loop:
         cmp r9, r11
         jae  __print
-        lea r10, [rdi]
+        ;lea r10, [rdi]
         ;mov rbx, r10
         mov al, [rdi + r11] ; Load the last character
         mov dl, [rdi + r9] ; Load the character to be swapped
         ;mov byte [r10 + r11], 'r' ; Store the character from r9 at r11
-        mov [r10 + r11], dl
+        mov [rdi + r11], dl
         mov [rdi + r9], al ; Store the character from r11 at r9
         inc r9
         dec r11
