@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
     const char* test = "test\n";
 
     reverse(test);
-    //printf(test);
+    printf(test);
 
     return EXIT_SUCCESS;
 }
