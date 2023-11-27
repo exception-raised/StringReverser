@@ -17,8 +17,8 @@ reverse:
 
     ; If the string length is 0;
     test r11, r11
-    sub r11, 1 ; str_len - 1
     jz __print
+    sub r11, 1 ; str_len - 1
 
     __loop:
         cmp r9, r11
