@@ -9,10 +9,9 @@ int main(int argc, char *argv[]) {
         return EXIT_FAILURE;
     }
 
-    const char* test = "test\n";
+    char test[] = "test";
 
     reverse(test);
-    //printf(test);
 
     return EXIT_SUCCESS;
 }
