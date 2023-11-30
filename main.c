@@ -9,6 +9,7 @@ int main(int argc, char *argv[]) {
         return EXIT_FAILURE;
     }
     reverse(argv[1]);
+    printf("Result: %s", argv[1]);
 
     return EXIT_SUCCESS;
 }
