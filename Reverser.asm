@@ -1,7 +1,6 @@
 section .data
 format db "Result: %s", 10, 0  
 
-; Maybe push string length onto the stack to perserve its value.
 section .text
 
 global reverse
@@ -10,7 +9,7 @@ extern printf
 get_string_len:
     push rbp
     mov rbp, rsp
-    xor rax, rax ; Clear rax
+    xor rax, rax            ; Clear rax, will contain the string length.
 get_len:
     cmp byte [rdi + rax], 0 ; Check if current character is a null terminator.
     je  end
@@ -25,29 +24,26 @@ end:
 reverse:
     push rbp
     mov rbp, rsp
-    xor r10, r10
-    xor r9, r9
+    xor r9, r9 ; Counter
     call get_string_len
-    mov r11, rax
+    mov r11, rax            ; rax contains the returned string length.
 
-    ; If the string length is 0;
-    test r11, r11
+    test r11, r11           ; If the string length is 0, we exit, there is nothing to do.
     je __exit
-    sub r11, 1 ; str_len - 1
+    sub r11, 1              ; string_length - 1
 
 __loop:
-    cmp r9, r11
+    cmp r9, r11             ; Do we our pointers match?
     jae  __exit
-    mov al, [rdi + r11] ; Load the last character. Pointer j
-    mov dl, [rdi + r9] ; Load the character to be swapped. Pointer i
+    mov al, [rdi + r11]     ; Load the last character. Pointer j
+    mov dl, [rdi + r9]      ; Load the character to be swapped. Pointer i
     mov [rdi + r11], dl
-    mov [rdi + r9], al ; Store the character from r11 at r9
+    mov [rdi + r9], al      ; Store the character from r11 at r9
     inc r9
     dec r11
     jmp __loop
 __exit:
-    mov rax, 60         ; syscall number for exit
-    ; Exit status (0 for success)
-    xor rdi, rdi
+    mov rax, 60             ; syscall number for exit
+    xor rdi, rdi            ; Exit status (0 for success)
     leave
     ret
