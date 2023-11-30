@@ -8,10 +8,7 @@ int main(int argc, char *argv[]) {
         printf("Usage: %s <argument1> [argument2] [argument3] ...\n", argv[0]);
         return EXIT_FAILURE;
     }
-
-    char test[] = "test";
-
-    reverse(test);
+    reverse(argv[1]);
 
     return EXIT_SUCCESS;
 }
