@@ -1,18 +1,34 @@
 section .data
 format db "Char: %s", 10, 0  
+testString db "test", 0 
 
 ; Maybe push string length onto the stack to perserve its value.
 section .text
 
 global reverse
-extern strlen, printf
+extern printf
+
+get_string_len:
+    push rbp
+    mov rbp, rsp
+    xor rax, rax ; Clear rax
+get_len:
+    cmp byte [rdi + rax], 0 ; Check if current character is a null terminator.
+    je  end
+
+    inc rax
+    jmp get_len
+
+end:
+    leave
+    ret
 
 reverse:
     push rbp
     mov rbp, rsp
     xor r10, r10
     xor r9, r9
-    call strlen
+    call get_string_len
     mov r11, rax
 
     ; If the string length is 0;
